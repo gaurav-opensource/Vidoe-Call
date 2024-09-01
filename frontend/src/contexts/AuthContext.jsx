@@ -12,9 +12,9 @@ export const AuthContext = createContext({});
 // })
 const client = axios.create({
    baseURL: `${server}/api/v1/users`,
-    headers: {
-        'Content-Type': 'application/json',
-    },
+    // headers: {
+    //     'Content-Type': 'application/json',
+    // },
 });
 
 export const AuthProvider = ({ children }) => {
