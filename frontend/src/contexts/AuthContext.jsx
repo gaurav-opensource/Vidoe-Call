@@ -7,10 +7,15 @@ import server from "../environment";
 
 export const AuthContext = createContext({});
 
+//  const client = axios.create({
+//     baseURL: "http://localhost:8000/api/v1/users"
+// })
 const client = axios.create({
-    baseURL: `${server}/api/v1/users`
-})
-
+    baseURL: "http://localhost:8000/api/v1/users",
+    headers: {
+        'Content-Type': 'application/json',
+    },
+});
 
 export const AuthProvider = ({ children }) => {
 
@@ -21,7 +26,6 @@ export const AuthProvider = ({ children }) => {
 
 
     const router = useNavigate();
-
     const handleRegister = async (name, username, password) => {
         try {
             let request = await client.post("/register", {
@@ -38,6 +42,7 @@ export const AuthProvider = ({ children }) => {
             throw err;
         }
     }
+    
 
     const handleLogin = async (username, password) => {
         try {
