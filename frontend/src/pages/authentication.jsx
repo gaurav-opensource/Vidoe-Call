@@ -60,11 +60,18 @@ export default function Authentication() {
                 setPassword("")
             }
         } catch (err) {
-
             console.log(err);
-            let message = (err.response.data.message);
+        
+            let message = "An error occurred during login.";
+            if (err.response && err.response.data) {
+                message = err.response.data.message || "Unexpected error occurred.";
+            } else if (err.message) {
+                message = err.message;
+            }
+        
             setError(message);
         }
+        
     }
 
 
