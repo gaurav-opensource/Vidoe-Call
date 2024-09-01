@@ -62,8 +62,15 @@ export default function Authentication() {
         } catch (err) {
 
             console.log(err);
-            let message = (err.response.data.message);
+
+            let message = "An unexpected error occurred"; // Default message
+            
+            if (err.response && err.response.data && err.response.data.message) {
+                message = err.response.data.message;
+            }
+            
             setError(message);
+            
         }
     }
 
